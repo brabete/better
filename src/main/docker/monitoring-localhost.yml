@@ -1,6 +1,6 @@
 version: '2'
 services:
-  corrente-prometheus:
+  better-prometheus:
     image: prom/prometheus:v2.9.2
     volumes:
       - ./prometheus/:/etc/prometheus/
@@ -9,7 +9,7 @@ services:
       - 9090:9090
     # On MacOS, remove next line and replace localhost by host.docker.internal in prometheus/prometheus.yml and
     # grafana/provisioning/datasources/datasource.yml
-  corrente-grafana:
+  better-grafana:
     image: grafana/grafana:6.1.4
     volumes:
       - ./grafana/provisioning/:/etc/grafana/provisioning/

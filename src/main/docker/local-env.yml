@@ -1,13 +1,13 @@
 version: '2'
 services:
-  corrente-postgresql:
+  better-postgresql:
     extends:
       file: postgresql.yml
-      service: corrente-postgresql
-  corrente-elasticsearch:
+      service: better-postgresql
+  better-elasticsearch:
     extends:
       file: elasticsearch.yml
-      service: corrente-elasticsearch
+      service: better-elasticsearch
   kafka:
     extends:
       file: kafka.yml
@@ -20,11 +20,11 @@ services:
     extends:
       file: jhipster-registry.yml
       service: jhipster-registry
-  corrente-prometheus:
+  better-prometheus:
     extends:
       file: monitoring-localhost.yml
-      service: corrente-prometheus
-  corrente-grafana:
+      service: better-prometheus
+  better-grafana:
     extends:
       file: monitoring-localhost.yml
-      service: corrente-grafana
+      service: better-grafana
