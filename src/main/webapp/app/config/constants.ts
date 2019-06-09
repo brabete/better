@@ -5,6 +5,7 @@ const config = {
 export default config;
 
 export const SERVER_API_URL = process.env.SERVER_API_URL;
+export const REACT_APP_WEATHER_API_KEY = '8cb8399bca0943b2b72140619191805';
 
 export const AUTHORITIES = {
   ADMIN: 'ROLE_ADMIN',
