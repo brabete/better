@@ -1,0 +1,50 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "io.github.better.application"
+    },
+    "jhipsterVersion": "6.0.1",
+    "applicationType": "monolith",
+    "baseName": "better",
+    "packageName": "io.github.better.application",
+    "packageFolder": "io/github/better/application",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": "elasticsearch",
+    "messageBroker": "kafka",
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": true,
+    "jwtSecretKey": "ZDc1YmJjNmVhNjNhYWQ1N2FhOTIzNjVlZDNlY2JhMjFlOTZmNTVhMDFlNDQ4MWU0MjU1NWFjMWE0MDg1MjQ1NzhmNDYwM2ZjZjU5MWI2MjFjMTMyNmZmNzExOWJkNjIwNDVkMDBhNTQ3ZjNmNDkyYmE4YjlkMTdiZDQzZmJiODM=",
+    "clientFramework": "react",
+    "clientTheme": "minty",
+    "clientThemeVariant": "primary",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [
+      "gatling",
+      "cucumber",
+      "protractor"
+    ],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-docker",
+        "version": "2.5.0"
+      },
+      {
+        "name": "generator-jhipster-testcontainers",
+        "version": "0.1.1"
+      }
+    ],
+    "enableTranslation": false
+  }
+}

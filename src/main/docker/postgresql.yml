@@ -1,0 +1,11 @@
+version: '2'
+services:
+  better-postgresql:
+    image: postgres:11.2
+    # volumes:
+    #     - ~/volumes/jhipster/better/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=better
+      - POSTGRES_PASSWORD=
+    ports:
+      - 5432:5432
