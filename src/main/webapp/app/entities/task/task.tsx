@@ -71,44 +71,48 @@ export class Task extends React.Component<ITaskProps, ITaskState> {
           </Col>
         </Row>
         <div className="table-responsive">
-          <Table responsive>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>T ODO List</th>
-                <th />
-              </tr>
-            </thead>
-            <tbody>
-              {taskList.map((task, i) => (
-                <tr key={`entity-${i}`}>
-                  <td>
-                    <Button tag={Link} to={`${match.url}/${task.id}`} color="link" size="sm">
-                      {task.id}
-                    </Button>
-                  </td>
-                  <td>{task.title}</td>
-                  <td>{task.description}</td>
-                  <td>{task.tODOList ? <Link to={`todo-list/${task.tODOList.id}`}>{task.tODOList.id}</Link> : ''}</td>
-                  <td className="text-right">
-                    <div className="btn-group flex-btn-group-container">
-                      <Button tag={Link} to={`${match.url}/${task.id}`} color="info" size="sm">
-                        <FontAwesomeIcon icon="eye" /> <span className="d-none d-md-inline">View</span>
-                      </Button>
-                      <Button tag={Link} to={`${match.url}/${task.id}/edit`} color="primary" size="sm">
-                        <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Edit</span>
-                      </Button>
-                      <Button tag={Link} to={`${match.url}/${task.id}/delete`} color="danger" size="sm">
-                        <FontAwesomeIcon icon="trash" /> <span className="d-none d-md-inline">Delete</span>
-                      </Button>
-                    </div>
-                  </td>
+          {taskList && taskList.length > 0 ? (
+            <Table responsive>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Title</th>
+                  <th>Description</th>
+                  <th>T ODO List</th>
+                  <th />
                 </tr>
-              ))}
-            </tbody>
-          </Table>
+              </thead>
+              <tbody>
+                {taskList.map((task, i) => (
+                  <tr key={`entity-${i}`}>
+                    <td>
+                      <Button tag={Link} to={`${match.url}/${task.id}`} color="link" size="sm">
+                        {task.id}
+                      </Button>
+                    </td>
+                    <td>{task.title}</td>
+                    <td>{task.description}</td>
+                    <td>{task.tODOList ? <Link to={`todo-list/${task.tODOList.id}`}>{task.tODOList.id}</Link> : ''}</td>
+                    <td className="text-right">
+                      <div className="btn-group flex-btn-group-container">
+                        <Button tag={Link} to={`${match.url}/${task.id}`} color="info" size="sm">
+                          <FontAwesomeIcon icon="eye" /> <span className="d-none d-md-inline">View</span>
+                        </Button>
+                        <Button tag={Link} to={`${match.url}/${task.id}/edit`} color="primary" size="sm">
+                          <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Edit</span>
+                        </Button>
+                        <Button tag={Link} to={`${match.url}/${task.id}/delete`} color="danger" size="sm">
+                          <FontAwesomeIcon icon="trash" /> <span className="d-none d-md-inline">Delete</span>
+                        </Button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          ) : (
+            <div className="alert alert-warning">No Tasks found</div>
+          )}
         </div>
       </div>
     );

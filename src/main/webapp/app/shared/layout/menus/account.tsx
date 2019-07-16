@@ -11,7 +11,7 @@ const accountMenuItemsAuthenticated = (
     <MenuItem icon="wrench" to="/account/settings">
       Settings
     </MenuItem>
-    <MenuItem icon="clock" to="/account/password">
+    <MenuItem icon="lock" to="/account/password">
       Password
     </MenuItem>
     <MenuItem icon="sign-out-alt" to="/logout">

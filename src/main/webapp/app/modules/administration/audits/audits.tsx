@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import { Input, Row, Table } from 'reactstrap';
-import { TextFormat, JhiPagination, getPaginationItemsNumber, getSortState, IPaginationBaseState } from 'react-jhipster';
+import { TextFormat, JhiPagination, JhiItemCount, getSortState, IPaginationBaseState } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { APP_TIMESTAMP_FORMAT } from 'app/config/constants';
@@ -95,46 +95,56 @@ export class AuditsPage extends React.Component<IAuditsPageProps, IAuditsPageSta
         <Input type="date" value={fromDate} onChange={this.onChangeFromDate} name="fromDate" id="fromDate" />
         <span>to</span>
         <Input type="date" value={toDate} onChange={this.onChangeToDate} name="toDate" id="toDate" />
-        <Table striped responsive>
-          <thead>
-            <tr>
-              <th onClick={this.sort('auditEventDate')}>
-                Date
-                <FontAwesomeIcon icon="sort" />
-              </th>
-              <th onClick={this.sort('principal')}>
-                User
-                <FontAwesomeIcon icon="sort" />
-              </th>
-              <th onClick={this.sort('auditEventType')}>
-                State
-                <FontAwesomeIcon icon="sort" />
-              </th>
-              <th>Extra data</th>
-            </tr>
-          </thead>
-          <tbody>
-            {audits.map((audit, i) => (
-              <tr key={`audit-${i}`}>
-                <td>{<TextFormat value={audit.timestamp} type="date" format={APP_TIMESTAMP_FORMAT} />}</td>
-                <td>{audit.principal}</td>
-                <td>{audit.type}</td>
-                <td>
-                  {audit.data ? audit.data.message : null}
-                  {audit.data ? audit.data.remoteAddress : null}
-                </td>
+        {audits && audits.length > 0 ? (
+          <Table striped responsive>
+            <thead>
+              <tr>
+                <th onClick={this.sort('auditEventDate')}>
+                  Date
+                  <FontAwesomeIcon icon="sort" />
+                </th>
+                <th onClick={this.sort('principal')}>
+                  User
+                  <FontAwesomeIcon icon="sort" />
+                </th>
+                <th onClick={this.sort('auditEventType')}>
+                  State
+                  <FontAwesomeIcon icon="sort" />
+                </th>
+                <th>Extra data</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
-        <Row className="justify-content-center">
-          <JhiPagination
-            items={getPaginationItemsNumber(totalItems, this.state.itemsPerPage)}
-            activePage={this.state.activePage}
-            onSelect={this.handlePagination}
-            maxButtons={5}
-          />
-        </Row>
+            </thead>
+            <tbody>
+              {audits.map((audit, i) => (
+                <tr key={`audit-${i}`}>
+                  <td>{<TextFormat value={audit.timestamp} type="date" format={APP_TIMESTAMP_FORMAT} />}</td>
+                  <td>{audit.principal}</td>
+                  <td>{audit.type}</td>
+                  <td>
+                    {audit.data ? audit.data.message : null}
+                    {audit.data ? audit.data.remoteAddress : null}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        ) : (
+          <div className="alert alert-warning">No audit found</div>
+        )}
+        <div className={audits && audits.length > 0 ? '' : 'd-none'}>
+          <Row className="justify-content-center">
+            <JhiItemCount page={this.state.activePage} total={totalItems} itemsPerPage={this.state.itemsPerPage} i18nEnabled />
+          </Row>
+          <Row className="justify-content-center">
+            <JhiPagination
+              activePage={this.state.activePage}
+              onSelect={this.handlePagination}
+              maxButtons={5}
+              itemsPerPage={this.state.itemsPerPage}
+              totalItems={this.props.totalItems}
+            />
+          </Row>
+        </div>
       </div>
     );
   }
