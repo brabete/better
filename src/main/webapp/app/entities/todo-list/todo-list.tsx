@@ -71,46 +71,50 @@ export class TODOList extends React.Component<ITODOListProps, ITODOListState> {
           </Col>
         </Row>
         <div className="table-responsive">
-          <Table responsive>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Date Created</th>
-                <th />
-              </tr>
-            </thead>
-            <tbody>
-              {tODOListList.map((tODOList, i) => (
-                <tr key={`entity-${i}`}>
-                  <td>
-                    <Button tag={Link} to={`${match.url}/${tODOList.id}`} color="link" size="sm">
-                      {tODOList.id}
-                    </Button>
-                  </td>
-                  <td>{tODOList.title}</td>
-                  <td>{tODOList.description}</td>
-                  <td>
-                    <TextFormat type="date" value={tODOList.dateCreated} format={APP_LOCAL_DATE_FORMAT} />
-                  </td>
-                  <td className="text-right">
-                    <div className="btn-group flex-btn-group-container">
-                      <Button tag={Link} to={`${match.url}/${tODOList.id}`} color="info" size="sm">
-                        <FontAwesomeIcon icon="eye" /> <span className="d-none d-md-inline">View</span>
-                      </Button>
-                      <Button tag={Link} to={`${match.url}/${tODOList.id}/edit`} color="primary" size="sm">
-                        <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Edit</span>
-                      </Button>
-                      <Button tag={Link} to={`${match.url}/${tODOList.id}/delete`} color="danger" size="sm">
-                        <FontAwesomeIcon icon="trash" /> <span className="d-none d-md-inline">Delete</span>
-                      </Button>
-                    </div>
-                  </td>
+          {tODOListList && tODOListList.length > 0 ? (
+            <Table responsive>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Title</th>
+                  <th>Description</th>
+                  <th>Date Created</th>
+                  <th />
                 </tr>
-              ))}
-            </tbody>
-          </Table>
+              </thead>
+              <tbody>
+                {tODOListList.map((tODOList, i) => (
+                  <tr key={`entity-${i}`}>
+                    <td>
+                      <Button tag={Link} to={`${match.url}/${tODOList.id}`} color="link" size="sm">
+                        {tODOList.id}
+                      </Button>
+                    </td>
+                    <td>{tODOList.title}</td>
+                    <td>{tODOList.description}</td>
+                    <td>
+                      <TextFormat type="date" value={tODOList.dateCreated} format={APP_LOCAL_DATE_FORMAT} />
+                    </td>
+                    <td className="text-right">
+                      <div className="btn-group flex-btn-group-container">
+                        <Button tag={Link} to={`${match.url}/${tODOList.id}`} color="info" size="sm">
+                          <FontAwesomeIcon icon="eye" /> <span className="d-none d-md-inline">View</span>
+                        </Button>
+                        <Button tag={Link} to={`${match.url}/${tODOList.id}/edit`} color="primary" size="sm">
+                          <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Edit</span>
+                        </Button>
+                        <Button tag={Link} to={`${match.url}/${tODOList.id}/delete`} color="danger" size="sm">
+                          <FontAwesomeIcon icon="trash" /> <span className="d-none d-md-inline">Delete</span>
+                        </Button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          ) : (
+            <div className="alert alert-warning">No TODO Lists found</div>
+          )}
         </div>
       </div>
     );
